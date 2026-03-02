@@ -1,0 +1,24 @@
+{
+  "expo": {
+    "name": "TicTac",
+    "slug": "tictac",
+    "scheme": "tictac",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.tictac.app"
+    },
+    "android": {
+      "package": "com.tictac.app"
+    },
+    "web": {
+      "bundler": "metro"
+    },
+    "extra": {
+      "apiUrl": "${EXPO_PUBLIC_API_URL}"
+    }
+  }
+}

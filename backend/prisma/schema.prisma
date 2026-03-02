@@ -1,0 +1,124 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum TournamentType {
+  KNOCKOUT
+  ROUND_ROBIN
+}
+
+enum Currency {
+  COINS
+  GEMS
+}
+
+model User {
+  id             String   @id @default(uuid())
+  email          String   @unique
+  username       String   @unique
+  role           Role     @default(USER)
+  mmr            Int      @default(1200)
+  points         Int      @default(0)
+  coins          Int      @default(0)
+  gems           Int      @default(0)
+  premium        Boolean  @default(false)
+  isBanned       Boolean  @default(false)
+  lastActiveAt   DateTime @default(now())
+  createdAt      DateTime @default(now())
+
+  purchases      Purchase[]
+  walletLogs     WalletTransaction[]
+}
+
+model Match {
+  id             String   @id @default(uuid())
+  playerXId      String
+  playerOId      String
+  winnerId       String?
+  replayData     Json
+  antiCheatFlags Json?
+  createdAt      DateTime @default(now())
+}
+
+model Season {
+  id                  String   @id @default(uuid())
+  name                String
+  startDate           DateTime
+  endDate             DateTime
+  rewardConfig        Json
+  resetRetentionRate  Float    @default(0.7)
+  isArchived          Boolean  @default(false)
+}
+
+model Tournament {
+  id               String         @id @default(uuid())
+  name             String
+  type             TournamentType
+  isPublic         Boolean        @default(true)
+  entryFeeAmount   Int            @default(0)
+  entryFeeCurrency Currency       @default(COINS)
+  prizePool        Int            @default(0)
+  maxParticipants  Int
+  bracket          Json?
+  startsAt         DateTime
+  status           String         @default("SCHEDULED")
+}
+
+model ShopItem {
+  id               String   @id @default(uuid())
+  name             String
+  description      String
+  category         String
+  rarity           String
+  priceCoins       Int?
+  priceGems        Int?
+  isActive         Boolean  @default(true)
+  requiredRank     String?
+  requiredSeasonId String?
+  stockLimit       Int?
+  assetUrl         String
+  archivedAt       DateTime?
+}
+
+model Purchase {
+  id          String   @id @default(uuid())
+  userId      String
+  shopItemId  String
+  amount      Int
+  currency    Currency
+  createdAt   DateTime @default(now())
+
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model WalletTransaction {
+  id          String   @id @default(uuid())
+  userId      String
+  currency    Currency
+  delta       Int
+  reason      String
+  metadata    Json?
+  createdAt   DateTime @default(now())
+
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model AdminActionLog {
+  id          String   @id @default(uuid())
+  adminId     String
+  action      String
+  targetType  String
+  targetId    String
+  metadata    Json?
+  createdAt   DateTime @default(now())
+}

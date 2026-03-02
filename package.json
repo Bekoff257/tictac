@@ -1,0 +1,14 @@
+{
+  "name": "tictac-saas",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": ["mobile", "backend"],
+  "scripts": {
+    "setup": "npm --workspace backend install && npm --workspace mobile install",
+    "dev": "npm run dev:backend & npm run dev:mobile",
+    "dev:backend": "npm --workspace backend run dev",
+    "dev:mobile": "npm --workspace mobile run start",
+    "lint": "npm --workspace backend run lint && npm --workspace mobile run lint",
+    "test": "npm --workspace backend run test"
+  }
+}

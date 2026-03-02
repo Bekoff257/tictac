@@ -17,6 +17,7 @@ npm run setup
 npm run dev
 ```
 
+
 ## Environment variables
 
 Copy the example files before running locally:
@@ -29,6 +30,8 @@ cp .env.example .env
 ```
 
 Then update secrets (`JWT_SECRET`) and connection strings as needed.
+
+=======
 
 ## Scripts
 

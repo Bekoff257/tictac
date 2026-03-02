@@ -17,6 +17,9 @@ npm run setup
 npm run dev
 ```
 
+
+
+
 ## Environment variables
 
 Copy the example files before running locally:
@@ -30,12 +33,14 @@ cp .env.example .env
 
 Then update secrets (`JWT_SECRET`) and connection strings as needed.
 
+
 ## Scripts
 
 - `npm run dev:mobile`
 - `npm run dev:backend`
 - `npm run lint`
 - `npm run test`
+
 
 
 ## Expo app helpers
@@ -46,3 +51,4 @@ npm --workspace mobile run android
 npm --workspace mobile run ios
 npm --workspace mobile run web
 ```
+

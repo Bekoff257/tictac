@@ -1,11 +1,21 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
+=======
+  "compilerOptions": {
+    "target": "ES2021",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+
     "strict": true,
     "baseUrl": "./src",
     "paths": {
       "@/*": ["*"]
     }
   },
+
   "include": ["src", "App.tsx", "expo-env.d.ts"]
+=======
+  "include": ["src", "App.tsx"]
+
 }

@@ -3,5 +3,7 @@ node_modules/
 *.log
 backend/.env
 mobile/.env
+
 .expo/
 mobile/.expo/
+

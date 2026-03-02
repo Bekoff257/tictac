@@ -17,6 +17,22 @@ npm run setup
 npm run dev
 ```
 
+
+## Environment variables
+
+Copy the example files before running locally:
+
+```bash
+cp backend/.env.example backend/.env
+cp mobile/.env.example mobile/.env
+# optional root convenience env
+cp .env.example .env
+```
+
+Then update secrets (`JWT_SECRET`) and connection strings as needed.
+
+=======
+
 ## Scripts
 
 - `npm run dev:mobile`
